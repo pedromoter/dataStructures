@@ -74,6 +74,7 @@ public enum GroceryItemSize
      * @return the corresponding enum constant or MEDIUM if the name is
      *     unrecognized
      */
+    
     public static GroceryItemSize
            interpretDescription( final String sizeDescription )
         {
