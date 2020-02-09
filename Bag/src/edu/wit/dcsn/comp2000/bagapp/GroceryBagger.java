@@ -32,7 +32,6 @@ public class GroceryBagger {
 		        	
 		        	interpretDescription(sc.nextLine());
 		        
-		        	
 		        }
 		        sc.close();
 		    } 
@@ -57,16 +56,17 @@ public class GroceryBagger {
 					data[6], 
 					data[4],
 					data[2]);
-			
+//			System.out.println("Read "+ grocery);
+
 			addToBag(grocery);
 			
 		}
 		
 		private static void addToBag(Grocery grocery) {
-			
 			if(currentBag == null) {
 				createNewBag();
 				addToBag(grocery);
+				return;
 			}
 			
 			
@@ -77,29 +77,24 @@ public class GroceryBagger {
 						bags.add(currentBag);
 						currentBagWeight = 0;
 						addToBag(grocery);
+						return;
 					}else {
 						//System.out.println("Add");
 						currentBagWeight += grocery.getWeight().sizeValue;
 						currentBag.add(grocery);
+						System.out.println(grocery);
 						numberOfItems++;
 					}
-				}else {
+				} else {
 					createNewBag();
 					addToBag(grocery);
+					return;
 				}
 		}
 		
 		private static void createNewBag() {
-			if(currentBagCount > 0 ) {
-				System.out.println("Bag: " +  currentBagCount);
-				Object[] tmp = currentBag.toArray();
-				for( Object i : tmp) {
-					System.out.println(i);
-				}
-			}
-			
-			//System.out.println("Is null or full,  create one!");
-			//create new bag 
+
+			System.out.println("Bag: " + ( 1 + currentBagCount) );
 			currentBag  = new  ResizableArrayBag<Grocery>();
 			bags.add(currentBag);
 			currentBagWeight = 0;
